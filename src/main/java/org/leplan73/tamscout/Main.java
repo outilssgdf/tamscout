@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,7 +32,7 @@ import org.slf4j.Logger;
 import com.jcabi.manifests.Manifests;
 
 @SuppressWarnings("serial")
-public class Main extends JDialog implements LoggedDialog {
+public class Main extends JFrame implements LoggedDialog {
 
 	protected Logger logger_;
 	
@@ -89,8 +88,7 @@ public class Main extends JDialog implements LoggedDialog {
 			}
 		});
 		mnFichier.add(mntmQuitter);
-		
-		setModalityType(ModalityType.APPLICATION_MODAL);
+
 		setResizable(false);
 		majTitre();
 		
