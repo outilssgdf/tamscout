@@ -36,7 +36,7 @@ public class EngineConversionEnLigne extends Engine {
 		super(progress, logger);
 	}
 
-	public void go(String tmp, File fichierModele, File fichierSortie) throws LoginEngineException {
+	public void go(String tmp, File fichierModele, File fichierSortie) throws EngineException {
 		logger_.info("Extraction");
 		
 		Integer departementId = null;
@@ -104,7 +104,7 @@ public class EngineConversionEnLigne extends Engine {
 				logger_.info("Génération terminée");
 				
 			} catch (IOException | TransformeurException e) {
-				throw new LoginEngineException("Erreur de conversion",e);
+				throw new EngineException("Erreur de conversion",e);
 			}
 			finally
 			{
@@ -117,7 +117,7 @@ public class EngineConversionEnLigne extends Engine {
 		}
 		else
 		{
-			throw new LoginEngineException("Données de connexion incorrectes");
+			throw new EngineException("Données de connexion incorrectes");
 		}
 		
 		close();

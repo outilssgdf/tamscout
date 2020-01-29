@@ -24,7 +24,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import org.leplan73.tamscout.engine.EngineConversionEnLigne;
-import org.leplan73.tamscout.engine.LoginEngineException;
+import org.leplan73.tamscout.engine.EngineException;
 import org.leplan73.tamscout.utils.ExcelFileFilter;
 import org.leplan73.tamscout.utils.Images;
 import org.leplan73.tamscout.utils.Preferences;
@@ -202,7 +202,7 @@ public class MainEnLigne extends JFrame implements LoggedDialog {
 						engine.go(tmp, fModele, fSortieFichier);
 						engine.close();
 						btnFichierOuvrir.maj();
-					} catch (LoginEngineException e1) {
+					} catch (EngineException e1) {
 						logger_.error(Logging.dumpStack(null, e1));
 					}
 				}).start();

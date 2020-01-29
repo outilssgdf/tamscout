@@ -44,7 +44,7 @@ public class Engine {
 		logger_ = logger;
 	}
 	
-	public void init() throws LoginEngineException
+	public void init() throws EngineException
 	{
 		BasicCookieStore cookieStore = new BasicCookieStore();
 		
@@ -61,11 +61,11 @@ public class Engine {
 			BasicHttpClientConnectionManager connectionManager = new BasicHttpClientConnectionManager(socketFactoryRegistry);
 			httpclient_ = HttpClients.custom().setSSLSocketFactory(sslsf).setConnectionManager(connectionManager).setDefaultCookieStore(cookieStore).build();
 		} catch (KeyManagementException e) {
-			throw new LoginEngineException("Erreur de connexion", e);
+			throw new EngineException("Erreur de connexion", e);
 		} catch (NoSuchAlgorithmException e) {
-			throw new LoginEngineException("Erreur de connexion", e);
+			throw new EngineException("Erreur de connexion", e);
 		} catch (KeyStoreException e) {
-			throw new LoginEngineException("Erreur de connexion", e);
+			throw new EngineException("Erreur de connexion", e);
 		}
 	}
 	
@@ -77,7 +77,7 @@ public class Engine {
 		}
 	}
 	
-	public String login(String codeOrganisateur, String login, String motdepasse) throws LoginEngineException
+	public String login(String codeOrganisateur, String login, String motdepasse) throws EngineException
 	{
 		HttpPost httppostStructures = new HttpPost(HTTPS_TAM + "/TamV4Service/Account/Login");
 		httppostStructures.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; rv:31.0) Gecko/20100101 Firefox/31.0");
@@ -100,10 +100,10 @@ public class Engine {
 			}
 			else
 			{
-				throw new LoginEngineException("Erreur de connexion");
+				throw new EngineException("Erreur de connexion");
 			}
 		} catch (IOException e) {
-			throw new LoginEngineException("Erreur de connexion");
+			throw new EngineException("Erreur de connexion");
 		}
 		finally
 		{

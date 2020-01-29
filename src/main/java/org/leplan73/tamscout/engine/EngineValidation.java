@@ -10,7 +10,7 @@ public class EngineValidation extends Engine {
 		super(progress, logger);
 	}
 
-	public void go(String codeOrganisateur, String login, String motdepasse) throws LoginEngineException {
+	public void go(String codeOrganisateur, String login, String motdepasse) throws EngineException {
 		init();
 		login(codeOrganisateur, login, motdepasse);
 		close();

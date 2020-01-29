@@ -23,7 +23,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import org.leplan73.tamscout.engine.EngineValidation;
-import org.leplan73.tamscout.engine.LoginEngineException;
+import org.leplan73.tamscout.engine.EngineException;
 import org.leplan73.tamscout.utils.Preferences;
 import org.slf4j.LoggerFactory;
 
@@ -170,7 +170,7 @@ public class Configuration extends Dialogue {
 					EngineValidation engine = new EngineValidation(progress, logger_);
 					engine.go(txfCodeOrganisateur.getText(), txfIdentifiant.getText(), new String(txfMotdepasse.getPassword()));
 					okButton.setEnabled(true);
-				} catch (LoginEngineException e) {
+				} catch (EngineException e) {
 					JOptionPane.showMessageDialog(this, e.getMessage());
 				} catch (Exception e) {
 					logger_.error(Logging.dumpStack(null, e));
