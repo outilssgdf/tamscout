@@ -14,7 +14,7 @@ public class TamScout {
 		}
 		Preferences.init();
 		Logging.initLogger(TamScout.class);
-		new Main(Logging.logger_).go();
+		new MainEnLigne(Logging.logger_).go();
 	}
 
 }

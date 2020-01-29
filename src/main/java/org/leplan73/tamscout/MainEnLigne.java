@@ -23,7 +23,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import org.leplan73.tamscout.engine.EngineConversion;
+import org.leplan73.tamscout.engine.EngineConversionEnLigne;
+import org.leplan73.tamscout.engine.LoginEngineException;
 import org.leplan73.tamscout.utils.ExcelFileFilter;
 import org.leplan73.tamscout.utils.Images;
 import org.leplan73.tamscout.utils.Preferences;
@@ -33,29 +34,35 @@ import org.slf4j.Logger;
 import com.jcabi.manifests.Manifests;
 
 @SuppressWarnings("serial")
-public class Main extends JFrame implements LoggedDialog {
+public class MainEnLigne extends JFrame implements LoggedDialog {
 
 	protected Logger logger_;
 	
 	private JPanel contentPane;
-	private JFileChooser fcEntree;
-	private File fModele = new File("conf/modele_tam.xlsx");
+	private File fModele = new File("conf","modele_tam.xlsx");
 	private JFileChooser fcSortieFichier;
-	protected File fEntree = new File(Preferences.lit(Consts.REPERTOIRE_ENTREE, "données", false));
 	
 	protected File fSortieFichier = new File("données","tam_sortie.xlsx");
 	protected String nomFichier_;
 	private BoutonOuvrir btnFichierOuvrir;
-	private JLabel lblEntree;
 	private JLabel lblSortie;
 	private JTextArea txtLog;
 	private JButton button;
+	
+	private String identifiant_;
+	private String motdepasse_;
+	private String codeorganisateur_;
 
 	/**
 	 * Create the frame.
 	 * @param logger 
 	 */
-	public Main(Logger logger) {
+	public MainEnLigne(Logger logger) {
+		
+		identifiant_ = Preferences.lit(Consts.TAM_IDENTIFIANT, "", true);
+		motdepasse_ = Preferences.lit(Consts.TAM_MOTDEPASSE, "", true);
+		codeorganisateur_ = Preferences.lit(Consts.TAM_CODE_ORGANISATEUR, "", true);
+		
 		logger_ = logger;
 		setIconImage(Images.getIcon());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -102,44 +109,10 @@ public class Main extends JFrame implements LoggedDialog {
 		contentPane.add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "Entr\u00E9e", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.anchor = GridBagConstraints.NORTH;
-		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 0;
-		panel.add(panel_1, gbc_panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
-		
-		lblEntree = new JLabel(fEntree.getAbsolutePath());
-		panel_1.add(lblEntree, BorderLayout.WEST);
-		
-		JButton btnFichierEntree = new JButton("Fichier d'entrée...");
-		btnFichierEntree.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				fcEntree = new JFileChooser();
-				fcEntree.setDialogTitle("Fichier source");
-				fcEntree.setApproveButtonText("Go");
-				fcEntree.setCurrentDirectory(fEntree);
-				fcEntree.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				fcEntree.removeChoosableFileFilter(fcEntree.getFileFilter());
-				fcEntree.removeChoosableFileFilter(fcEntree.getAcceptAllFileFilter());
-				fcEntree.addChoosableFileFilter(new ExcelFileFilter());
-				int result = fcEntree.showDialog(panel, "OK");
-				if (result == JFileChooser.APPROVE_OPTION) {
-					fEntree = fcEntree.getSelectedFile();
-					lblEntree.setText(fEntree.getPath());
-				}
-			}
-		});
-		panel_1.add(btnFichierEntree, BorderLayout.EAST);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Sortie", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -148,7 +121,7 @@ public class Main extends JFrame implements LoggedDialog {
 		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 1;
+		gbc_panel_2.gridy = 0;
 		panel.add(panel_2, gbc_panel_2);
 		panel_2.setLayout(new BorderLayout(0, 0));
 		
@@ -197,7 +170,7 @@ public class Main extends JFrame implements LoggedDialog {
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 2;
+		gbc_scrollPane.gridy = 1;
 		panel.add(scrollPane, gbc_scrollPane);
 		
 		txtLog = new JTextArea();
@@ -209,7 +182,7 @@ public class Main extends JFrame implements LoggedDialog {
 		gbc_panel_4.anchor = GridBagConstraints.SOUTH;
 		gbc_panel_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_4.gridx = 0;
-		gbc_panel_4.gridy = 3;
+		gbc_panel_4.gridy = 2;
 		panel.add(panel_4, gbc_panel_4);
 		panel_4.setLayout(new BorderLayout(0, 0));
 		
@@ -219,13 +192,20 @@ public class Main extends JFrame implements LoggedDialog {
 		JButton button_1 = new JButton("Go");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					initLog();
-					new EngineConversion().go(fEntree, fModele, fSortieFichier, logger_);
-					btnFichierOuvrir.maj();
-				} catch (IOException | TransformeurException e1) {
-					logger_.error(Logging.dumpStack(null, e1));
-				}
+				new Thread(() -> {
+					try {
+						initLog();
+						EngineConversionEnLigne engine = new EngineConversionEnLigne(null, logger_);
+						engine.init();
+						logger_.info("Connexion");
+						String tmp = engine.login(codeorganisateur_, identifiant_, motdepasse_);
+						engine.go(tmp, fModele, fSortieFichier);
+						engine.close();
+						btnFichierOuvrir.maj();
+					} catch (LoginEngineException e1) {
+						logger_.error(Logging.dumpStack(null, e1));
+					}
+				}).start();
 			}
 		});
 		panel_5.add(button_1);
@@ -237,6 +217,17 @@ public class Main extends JFrame implements LoggedDialog {
 				dispose();
 			}
 		});
+		
+		JButton btnNewButton = new JButton("Paramètres");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Configuration().setVisible(true);
+			}
+		});
+		panel_4.add(btnNewButton, BorderLayout.WEST);
+		btnNewButton.setFont(btnNewButton.getFont().deriveFont(btnNewButton.getFont().getSize() - 1f));
+		btnNewButton.setToolTipText("Définir l'identification utilisée et autres paramètres");
+		btnNewButton.setIcon(Images.getIconCog());
 	}
 
 	@Override
@@ -270,12 +261,11 @@ public class Main extends JFrame implements LoggedDialog {
 	public void dispose() {
 		Preferences.sauved(Consts.FENETRE_PRINCIPALE_X, this.getLocation().getX());
 		Preferences.sauved(Consts.FENETRE_CONFIGURATION_Y, this.getLocation().getY());
-		Preferences.sauve(Consts.REPERTOIRE_ENTREE, this.fEntree.getPath(), false);
 		Preferences.sauve(Consts.REPERTOIRE_SORTIE, this.fSortieFichier.getAbsoluteFile().getParent(), false);
 		super.dispose();
 	}
 	
-	private File ajouteExtensionFichier(JFileChooser fc, JLabel label, String extension)
+	protected File ajouteExtensionFichier(JFileChooser fc, JLabel label, String extension)
 	{
 		File f = fc.getSelectedFile();
 		String path = f.getPath();

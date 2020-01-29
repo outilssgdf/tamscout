@@ -19,14 +19,20 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<htmlunit.version>2.36.0</htmlunit.version>
 		<jett.version>0.11.2</jett.version>
 		<poi.version>4.0.1</poi.version>
 		<slf4j.version>1.7.29</slf4j.version>
 		<logback.version>1.2.3</logback.version>
 		<jcabi.version>1.1</jcabi.version>
+		<json-path.version>2.4.0</json-path.version>
+		<httpclient.version>4.5.9</httpclient.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>${json-path.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.jcabi</groupId>
 			<artifactId>jcabi-manifests</artifactId>
@@ -69,9 +75,9 @@
 			<version>${poi.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>net.sourceforge.htmlunit</groupId>
-			<artifactId>htmlunit</artifactId>
-			<version>${htmlunit.version}</version>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>commons-logging</groupId>

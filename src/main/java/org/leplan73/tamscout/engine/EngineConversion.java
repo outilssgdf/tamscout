@@ -1,4 +1,4 @@
-package org.leplan73.tamscout;
+package org.leplan73.tamscout.engine;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,9 +13,13 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.leplan73.tamscout.Declaration;
+import org.leplan73.tamscout.Declarations;
+import org.leplan73.tamscout.Transformeur;
+import org.leplan73.tamscout.TransformeurException;
 import org.slf4j.Logger;
 
-public class Engine {
+public class EngineConversion {
 	public void go(File fichierEntree, File fichierModele, File fichierSortie, Logger logger) throws IOException, TransformeurException
 	{
 		logger.info("Lancement de l'analyse");

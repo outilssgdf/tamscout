@@ -9,4 +9,8 @@ public class Consts {
 	
 	public static final String FENETRE_PRINCIPALE_X = "fenetre.principale.x";
 	public static final String FENETRE_PRINCIPALE_Y = "fenetre.principale.y";
+	
+	public static final String TAM_IDENTIFIANT = "tam.identifiant";
+	public static final String TAM_MOTDEPASSE = "tam.motdepasse";
+	public static final String TAM_CODE_ORGANISATEUR = "tam.codeorganisateur";
 }
