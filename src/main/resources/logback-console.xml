@@ -1,0 +1,13 @@
+<configuration>
+
+  <appender name="appender" class="org.leplan73.tamscout.Appender">
+  </appender>
+
+	<logger name="com.jcabi.manifests" level="OFF"></logger>
+	<logger name="org.apache.commons.jexl2.JexlEngine" level="OFF"></logger>
+	<logger name="net.sf.jett" level="OFF"></logger>
+  
+  <logger name="org.leplan73.tamscout" level="info" additivity="false">
+   <appender-ref ref="appender" />
+  </logger>
+</configuration>

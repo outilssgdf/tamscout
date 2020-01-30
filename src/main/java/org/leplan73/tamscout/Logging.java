@@ -15,9 +15,9 @@ public class Logging {
 
 	public static Logger logger_;
 
-	public static void initLogger(Class<?> classn)
+	public static void initLogger(Class<?> classn, boolean nologfile)
 	{
-		System.setProperty(ContextInitializer.CONFIG_FILE_PROPERTY, "logback-gui.xml");
+		System.setProperty(ContextInitializer.CONFIG_FILE_PROPERTY, nologfile ? "logback-console.xml" : "logback-gui.xml");
 		logger_ = LoggerFactory.getLogger(classn);
 	}
 	
