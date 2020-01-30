@@ -154,7 +154,7 @@ public class Configuration extends Dialogue {
 				}
 			}
 		}
-		okButton.setEnabled(txfCodeOrganisateur.getText().isEmpty() == false);
+		okButton.setEnabled(false);
 	}
 
 	public void go() {
@@ -172,8 +172,10 @@ public class Configuration extends Dialogue {
 					okButton.setEnabled(true);
 				} catch (EngineException e) {
 					JOptionPane.showMessageDialog(this, e.getMessage());
+					okButton.setEnabled(false);
 				} catch (Exception e) {
 					logger_.error(Logging.dumpStack(null, e));
+					okButton.setEnabled(false);
 				}
 		}).start();
 	}
