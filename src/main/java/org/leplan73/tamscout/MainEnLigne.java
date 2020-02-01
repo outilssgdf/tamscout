@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -34,7 +35,7 @@ import org.slf4j.Logger;
 import com.jcabi.manifests.Manifests;
 
 @SuppressWarnings("serial")
-public class MainEnLigne extends JFrame implements LoggedDialog {
+public class MainEnLigne extends Fenetre implements LoggedDialog {
 
 	protected Logger logger_;
 	
@@ -276,11 +277,7 @@ public class MainEnLigne extends JFrame implements LoggedDialog {
 		label.setText(path);
 		return f;
 	}
-	
-	public void go()
-	{
-		this.setVisible(true);
-	}
+
 	public JTextArea getTxtLog() {
 		return txtLog;
 	}
