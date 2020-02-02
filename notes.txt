@@ -1,3 +1,4 @@
 Note de version pour l'outil de conversion de fichier TAM (Téléprocédure des Accueils des Mineurs)
 
-Version 0.0.1 : Version initiale
+Version 1.0.0 : Version initiale
+Version 1.1.0 : Téléchargement direct depuis le site de TAM
