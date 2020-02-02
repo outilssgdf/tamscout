@@ -9,7 +9,7 @@ public class Fenetre extends JFrame {
 	{
 		this.setVisible(true);
 		JOptionPane.showMessageDialog(this, 
-				"Le fichier d'export est à disposition exclusive des Scouts et Guides de France et uniquement pour ceux qui en ont besoin\n\n"+
+				"Le fichier d'export est à disposition exclusive des Scouts et Guides de France\net uniquement pour ceux qui en ont besoin\n\n"+
 				"En cliquant sur le bouton OK, je déclare accepter cette règle.", "Information sur les données TAM", JOptionPane.WARNING_MESSAGE);
 	}
 }
