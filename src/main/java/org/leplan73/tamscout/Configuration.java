@@ -48,7 +48,7 @@ public class Configuration extends Dialogue {
 
 		double x = Preferences.litd(Consts.FENETRE_CONFIGURATION_X, 100);
 		double y = Preferences.litd(Consts.FENETRE_CONFIGURATION_Y, 100);
-		setBounds((int)x, (int)y, 430, 280);
+		setBounds((int)x, (int)y, 430, 230);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -56,11 +56,11 @@ public class Configuration extends Dialogue {
 		gbl_contentPanel.columnWidths = new int[]{0, 0};
 		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0};
 		gbl_contentPanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Code organisateur", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Code organisateur TAM", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			GridBagConstraints gbc_panel = new GridBagConstraints();
 			gbc_panel.fill = GridBagConstraints.HORIZONTAL;
 			gbc_panel.insets = new Insets(0, 0, 5, 0);
@@ -78,7 +78,7 @@ public class Configuration extends Dialogue {
 		}
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Acc\u00E8s Intranet", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(null, "Acc\u00E8s TAM", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			GridBagConstraints gbc_panel = new GridBagConstraints();
 			gbc_panel.fill = GridBagConstraints.HORIZONTAL;
 			gbc_panel.anchor = GridBagConstraints.NORTH;
@@ -128,7 +128,7 @@ public class Configuration extends Dialogue {
 		{
 			JButton btnNewButton = new JButton("Validation");
 			GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-			gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
+			gbc_btnNewButton.fill = GridBagConstraints.BOTH;
 			gbc_btnNewButton.gridx = 0;
 			gbc_btnNewButton.gridy = 2;
 			contentPanel.add(btnNewButton, gbc_btnNewButton);
