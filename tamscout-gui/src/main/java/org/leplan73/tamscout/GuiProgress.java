@@ -3,6 +3,8 @@ package org.leplan73.tamscout;
 import javax.swing.ProgressMonitor;
 import javax.swing.UIManager;
 
+import org.leplan73.tamscout.engine.Progress;
+
 public class GuiProgress implements Progress {
 	
 	private ProgressMonitor progress_;

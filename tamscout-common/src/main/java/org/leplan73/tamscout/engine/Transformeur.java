@@ -1,4 +1,4 @@
-package org.leplan73.tamscout;
+package org.leplan73.tamscout.engine;
 
 import java.io.IOException;
 import java.io.InputStream;

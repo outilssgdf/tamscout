@@ -25,7 +25,6 @@ import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.apache.http.ssl.SSLContexts;
 import org.apache.http.ssl.TrustStrategy;
 import org.apache.http.util.EntityUtils;
-import org.leplan73.tamscout.Progress;
 import org.slf4j.Logger;
 
 public class Engine {

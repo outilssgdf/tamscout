@@ -19,11 +19,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.leplan73.tamscout.Declaration;
-import org.leplan73.tamscout.Declarations;
-import org.leplan73.tamscout.Progress;
-import org.leplan73.tamscout.Transformeur;
-import org.leplan73.tamscout.TransformeurException;
 import org.slf4j.Logger;
 
 import com.jayway.jsonpath.Configuration;

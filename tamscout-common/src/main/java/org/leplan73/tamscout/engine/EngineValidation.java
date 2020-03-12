@@ -1,6 +1,5 @@
 package org.leplan73.tamscout.engine;
 
-import org.leplan73.tamscout.Progress;
 import org.slf4j.Logger;
 
 public class EngineValidation extends Engine {

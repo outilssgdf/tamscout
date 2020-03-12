@@ -25,6 +25,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import org.leplan73.tamscout.engine.EngineConversion;
+import org.leplan73.tamscout.engine.TransformeurException;
 import org.leplan73.tamscout.utils.ExcelFileFilter;
 import org.leplan73.tamscout.utils.Images;
 import org.leplan73.tamscout.utils.Preferences;

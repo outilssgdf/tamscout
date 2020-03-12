@@ -15,6 +15,7 @@
     <developerConnection>scm:git:https://github.com/sbouchex/tamscout.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
+	<packaging>pom</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -28,153 +29,13 @@
 		<httpclient.version>4.5.9</httpclient.version>
 		<picocli.version>3.9.6</picocli.version>
 	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>info.picocli</groupId>
-			<artifactId>picocli</artifactId>
-			<version>${picocli.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.jayway.jsonpath</groupId>
-			<artifactId>json-path</artifactId>
-			<version>${json-path.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.jcabi</groupId>
-			<artifactId>jcabi-manifests</artifactId>
-			<version>${jcabi.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>${poi.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.jett</groupId>
-			<artifactId>jett-core</artifactId>
-			<version>${jett.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>${poi.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>${httpclient.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-	</dependencies>
+	<modules>
+		<module>tamscout-common</module>
+		<module>tamscout-gui</module>
+		<module>tamscout-assembly</module>
+	</modules>
 	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.2.1</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<transformers>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>org.leplan73.tamscout.TamScout</mainClass>
-								</transformer>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-							</transformers>
-							<finalName>tamscout</finalName>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>3.1.1</version><!--$NO-MVN-MAN-VER$ -->
-				<executions>
-					<execution>
-						<id>create-archive</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<descriptors>
-								<descriptor>src/main/assembly/package.xml</descriptor>
-							</descriptors>
-							<finalName>
-								tamscout-${project.version}
-							</finalName>
-							<appendAssemblyId>false</appendAssemblyId>
-						</configuration>
-					</execution>
-					<execution>
-						<id>create-archive-dev</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<descriptors>
-								<descriptor>src/main/assembly/package-dev.xml</descriptor>
-							</descriptors>
-							<finalName>
-								tamscout-${project.version}-dev
-							</finalName>
-							<appendAssemblyId>false</appendAssemblyId>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.1.0</version>
-				<configuration>
-					<archive>
-						<addMavenDescriptor>false</addMavenDescriptor>
-						<manifestEntries>
-			               <Multi-Release>true</Multi-Release>
-			               <version>${project.version}</version>
-	        			</manifestEntries>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M1</version>
-				<configuration>
-					<skipTests>true</skipTests>
-				</configuration>
-			</plugin>
+	<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
@@ -184,6 +45,6 @@
 					<pushChanges>false</pushChanges>
 				</configuration>
 			</plugin>
-		</plugins>
+			</plugins>
 	</build>
 </project>

@@ -23,6 +23,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import org.leplan73.tamscout.engine.EngineValidation;
+import org.leplan73.tamscout.engine.Progress;
 import org.leplan73.tamscout.engine.EngineException;
 import org.leplan73.tamscout.utils.Preferences;
 import org.slf4j.LoggerFactory;

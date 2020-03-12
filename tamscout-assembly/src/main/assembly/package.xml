@@ -5,43 +5,43 @@
   <formats>
     <format>zip</format>
   </formats>
-  <baseDirectory>.</baseDirectory>
+  <baseDirectory>tamscout</baseDirectory>
   <files>
     <file>
-      <source>LICENSE</source>
+      <source>../LICENSE</source>
       <outputDirectory>.</outputDirectory>
     </file>
     <file>
-      <source>fichiers/tamscout.exe</source>
+      <source>../fichiers/tamscout.exe</source>
       <outputDirectory>.</outputDirectory>
     </file>
     <file>
-      <source>fichiers/tamscout.sh</source>
+      <source>../fichiers/tamscout.sh</source>
       <outputDirectory>.</outputDirectory>
     </file>
     <file>
-      <source>notes.txt</source>
+      <source>../notes.txt</source>
       <outputDirectory>.</outputDirectory>
     </file>
     <file>
-      <source>target/tamscout.jar</source>
+      <source>../tamscout-gui/target/tamscout.jar</source>
       <outputDirectory>./app</outputDirectory>
     </file>
   </files>
   <fileSets>
   <fileSet>
-    <directory>fichiers/conf</directory>
+    <directory>../fichiers/conf</directory>
     <outputDirectory>./conf</outputDirectory>
   </fileSet>
   <fileSet>
-    <directory>fichiers/log</directory>
+    <directory>../fichiers/log</directory>
     <outputDirectory>./log</outputDirectory>
     <excludes>
         <exclude>*.*</exclude>
       </excludes>
   </fileSet>
   <fileSet>
-    <directory>fichiers/données</directory>
+    <directory>../fichiers/données</directory>
     <outputDirectory>./données</outputDirectory>
     <excludes>
         <exclude>*.*</exclude>
